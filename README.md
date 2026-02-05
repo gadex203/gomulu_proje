@@ -229,13 +229,16 @@ ECHO_PIN = 24           # Ultrasonik sensör ECHO pini
 ```
 
 ## 📱 Ekran Görüntüleri
+<img width="1129" height="932" alt="image" src="https://github.com/user-attachments/assets/845608d2-e248-457f-9091-6cde814181d6" />
+<img width="1001" height="824" alt="image" src="https://github.com/user-attachments/assets/4a1f4a4f-8f3a-4370-b01e-45d23aca8020" />
 
 Web arayüzü şu bileşenleri içerir:
 
 1. **Ultrasonik Sensör Kartı** - Mesafe değeri ve sensör durumu
 2. **IMU Sensör Kartı** - İvme ve gyro değerleri
 3. **Servo Kontrol Kartı** - Açı butonları ve özel açı girişi
-4. **Sistem Durumu** - Bağlantı ve son güncelleme bilgisi
+4. **DC Motor Kontrolü** -Hareket yönü ve motor hızı kontrolü
+5. **Sistem Durumu** - Bağlantı ve son güncelleme bilgisi
 
 
 

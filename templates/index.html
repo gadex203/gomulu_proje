@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raspberry Pi Sensör Kontrol Paneli</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🍓 Raspberry Pi 4 Kontrol Paneli</h1>
+            <p class="subtitle">Sensör Okuma ve Servo Motor Kontrolü</p>
+        </header>
+
+        <!-- Ana İçerik -->
+        <main class="main-content">
+            
+            <!-- Sensör Verileri Bölümü -->
+            <section class="panel sensor-panel">
+                <h2>📊 Sensör Verileri</h2>
+                
+                <!-- Ultrasonik Sensör -->
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>📏 Ultrasonik Sensör (HC-SR04)</h3>
+                        <span id="sensor-status" class="status-badge status-active">AKTİF</span>
+                    </div>
+                    <div class="data-value">
+                        <span id="distance-value">0.00</span>
+                        <span class="unit">cm</span>
+                    </div>
+                    <div class="sensor-controls">
+                        <button id="btn-sensor-on" class="btn btn-success" onclick="sensorControl(true)">
+                            ▶ Sensörü Aç
+                        </button>
+                        <button id="btn-sensor-off" class="btn btn-danger" onclick="sensorControl(false)">
+                            ⏹ Sensörü Kapat
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- IMU Sensör -->
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>🎯 IMU Sensör (MPU-6050)</h3>
+                        <span id="imu-status" class="status-badge status-active">AKTİF</span>
+                    </div>
+                    <div class="imu-grid">
+                        <div class="imu-section">
+                            <h4>İvme (m/s²)</h4>
+                            <div class="imu-values">
+                                <div class="imu-item">
+                                    <span class="label">X:</span>
+                                    <span id="accel-x" class="value">0.000</span>
+                                </div>
+                                <div class="imu-item">
+                                    <span class="label">Y:</span>
+                                    <span id="accel-y" class="value">0.000</span>
+                                </div>
+                                <div class="imu-item">
+                                    <span class="label">Z:</span>
+                                    <span id="accel-z" class="value">9.810</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="imu-section">
+                            <h4>Gyro (°/s)</h4>
+                            <div class="imu-values">
+                                <div class="imu-item">
+                                    <span class="label">X:</span>
+                                    <span id="gyro-x" class="value">0.00</span>
+                                </div>
+                                <div class="imu-item">
+                                    <span class="label">Y:</span>
+                                    <span id="gyro-y" class="value">0.00</span>
+                                </div>
+                                <div class="imu-item">
+                                    <span class="label">Z:</span>
+                                    <span id="gyro-z" class="value">0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Rotasyon Değerleri -->
+                    <div class="rotation-display">
+                        <div class="rotation-item">
+                            <span class="label">X Rotasyon:</span>
+                            <span id="rotation-x" class="value">0.00</span>
+                            <span class="unit">°</span>
+                        </div>
+                        <div class="rotation-item">
+                            <span class="label">Y Rotasyon:</span>
+                            <span id="rotation-y" class="value">0.00</span>
+                            <span class="unit">°</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Servo Motor Kontrol Bölümü -->
+            <section class="panel servo-panel">
+                <h2>⚙️ Servo Motor Kontrolü</h2>
+                
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>🔄 Servo Pozisyonu</h3>
+                        <span class="pin-info">GPIO 18</span>
+                    </div>
+                    
+                    <div class="servo-display">
+                        <div class="servo-visual">
+                            <div class="servo-arm" id="servo-arm"></div>
+                            <div class="servo-body"></div>
+                        </div>
+                        <div class="servo-angle">
+                            <span id="servo-angle-value">90</span>
+                            <span class="unit">°</span>
+                        </div>
+                    </div>
+                    
+                    <div class="servo-controls">
+                        <button class="btn btn-servo" onclick="moveServo(0)">
+                            0°
+                        </button>
+                        <button class="btn btn-servo" onclick="moveServo(45)">
+                            45°
+                        </button>
+                        <button class="btn btn-servo btn-center" onclick="moveServo(90)">
+                            90°
+                        </button>
+                        <button class="btn btn-servo" onclick="moveServo(135)">
+                            135°
+                        </button>
+                        <button class="btn btn-servo" onclick="moveServo(180)">
+                            180°
+                        </button>
+                    </div>
+                    
+                    <!-- Özel Açı Girişi -->
+                    <div class="custom-angle">
+                        <input type="number" id="custom-angle-input" min="0" max="180" value="90" placeholder="Açı (0-180)">
+                        <button class="btn btn-primary" onclick="moveServoCustom()">
+                            Gönder
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DC Motor Kontrol Bölümü -->
+            <section class="panel motor-panel">
+                <h2>🔌 DC Motor Kontrolü</h2>
+                
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>⚡ Motor Durumu</h3>
+                        <span id="motor-status" class="status-badge status-inactive">DURDURULDU</span>
+                    </div>
+                    
+                    <div class="motor-display">
+                        <div class="motor-info">
+                            <div class="motor-stat">
+                                <span class="label">Yön:</span>
+                                <span id="motor-direction" class="value">-</span>
+                            </div>
+                            <div class="motor-stat">
+                                <span class="label">Hız:</span>
+                                <span id="motor-speed-value" class="value">0</span>
+                                <span class="unit">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Yön Kontrolleri -->
+                    <div class="motor-controls">
+                        <button id="btn-motor-backward" class="btn btn-motor btn-backward" onclick="motorControl('backward')">
+                            ⬅️ Geri
+                        </button>
+                        <button id="btn-motor-stop" class="btn btn-motor btn-stop" onclick="motorControl('stop')">
+                            ⏹️ Dur
+                        </button>
+                        <button id="btn-motor-forward" class="btn btn-motor btn-forward" onclick="motorControl('forward')">
+                            İleri ➡️
+                        </button>
+                    </div>
+                    
+                    <!-- Fren Butonu -->
+                    <div class="motor-brake">
+                        <button id="btn-motor-brake" class="btn btn-danger btn-full" onclick="motorControl('brake')">
+                            🛑 Acil Fren
+                        </button>
+                    </div>
+                    
+                    <!-- Hız Kontrolü -->
+                    <div class="speed-control">
+                        <label for="motor-speed">Motor Hızı: <span id="speed-display">50</span>%</label>
+                        <input type="range" id="motor-speed" min="0" max="100" value="50" oninput="updateSpeedDisplay(this.value)">
+                        <div class="speed-presets">
+                            <button class="btn btn-small" onclick="setMotorSpeed(25)">25%</button>
+                            <button class="btn btn-small" onclick="setMotorSpeed(50)">50%</button>
+                            <button class="btn btn-small" onclick="setMotorSpeed(75)">75%</button>
+                            <button class="btn btn-small" onclick="setMotorSpeed(100)">100%</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sistem Durumu -->
+            <section class="panel status-panel">
+                <h2>🖥️ Sistem Durumu</h2>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-label">Bağlantı:</span>
+                        <span id="connection-status" class="status-value connected">Bağlı</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Son Güncelleme:</span>
+                        <span id="last-update" class="status-value">--:--:--</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Polling:</span>
+                        <span class="status-value">500ms</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Raspberry Pi 4 - Flask Web Sunucusu | GPIO: Servo(17), TRIG(23), ECHO(24)</p>
+        </footer>
+    </div>
+
+    <!-- Bildirim Alanı -->
+    <div id="notification" class="notification hidden"></div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

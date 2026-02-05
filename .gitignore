@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Distribution / Packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Flask
+instance/
+.webassets-cache
+
+# Local Configuration
+config.local.py
+.env
+.env.local
+
+# Test Coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Jupyter Notebook (eğer kullanılırsa)
+.ipynb_checkpoints/
+
+#ozet.md
+ozet.md
+
+#raspberry_pi_kurulum.md
+raspberry_pi_kurulum.md
+

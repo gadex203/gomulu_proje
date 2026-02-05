@@ -1,0 +1,710 @@
+/* ==================== GENEL STILLER ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #c51a4a;
+    --primary-dark: #9e1038;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --bg-color: #1a1a2e;
+    --panel-bg: #16213e;
+    --card-bg: #0f3460;
+    --text-color: #e8e8e8;
+    --text-muted: #a0a0a0;
+    --border-color: #2d4a77;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #0f0f1a 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==================== HEADER ==================== */
+.header {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* ==================== PANEL ==================== */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.panel {
+    background: var(--panel-bg);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.panel h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.status-panel {
+    grid-column: 1 / -1;
+}
+
+/* ==================== DATA CARD ==================== */
+.data-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.data-card:last-child {
+    margin-bottom: 0;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* ==================== STATUS BADGE ==================== */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-active {
+    background: var(--success-color);
+    color: white;
+}
+
+.status-inactive {
+    background: var(--danger-color);
+    color: white;
+}
+
+.status-mock {
+    background: var(--warning-color);
+    color: #333;
+}
+
+.pin-info {
+    background: var(--info-color);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* ==================== DATA VALUE ==================== */
+.data-value {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.data-value span:first-child {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #4fc3f7;
+    text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+}
+
+.data-value .unit {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-left: 10px;
+}
+
+/* ==================== IMU GRID ==================== */
+.imu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.imu-section h4 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.imu-values {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.imu-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.imu-item:last-child {
+    border-bottom: none;
+}
+
+.imu-item .label {
+    color: var(--text-muted);
+    font-weight: bold;
+}
+
+.imu-item .value {
+    color: #81c784;
+    font-family: 'Consolas', monospace;
+    font-size: 1rem;
+}
+
+/* ==================== ROTASYON DISPLAY ==================== */
+.rotation-display {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.rotation-item {
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.rotation-item .label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.rotation-item .value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #64b5f6;
+    font-family: 'Consolas', monospace;
+}
+
+.rotation-item .unit {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* ==================== BUTONLAR ==================== */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success-color) 0%, #1e7e34 100%);
+    color: white;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--danger-color) 0%, #a71d2a 100%);
+    color: white;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
+.btn-servo {
+    background: linear-gradient(135deg, #4a90d9 0%, #2d6da8 100%);
+    color: white;
+    min-width: 60px;
+}
+
+.btn-servo.btn-center {
+    background: linear-gradient(135deg, var(--success-color) 0%, #1e7e34 100%);
+}
+
+/* ==================== SENSOR CONTROLS ==================== */
+.sensor-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* ==================== SERVO DISPLAY ==================== */
+.servo-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px 0;
+}
+
+.servo-visual {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.servo-body {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 40px;
+    background: linear-gradient(135deg, #555 0%, #333 100%);
+    border-radius: 5px;
+    border: 2px solid #666;
+}
+
+.servo-arm {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    width: 6px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-radius: 3px;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotate(0deg);
+    transition: transform 0.5s ease;
+    box-shadow: 0 0 10px rgba(197, 26, 74, 0.5);
+}
+
+.servo-angle {
+    text-align: center;
+}
+
+.servo-angle span:first-child {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffb74d;
+    text-shadow: 0 0 20px rgba(255, 183, 77, 0.5);
+}
+
+/* ==================== SERVO CONTROLS ==================== */
+.servo-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.custom-angle {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.custom-angle input {
+    width: 120px;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--panel-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.custom-angle input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* ==================== DC MOTOR CONTROLS ==================== */
+.motor-panel {
+    animation-delay: 0.25s;
+}
+
+.motor-display {
+    padding: 20px 0;
+}
+
+.motor-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.motor-stat {
+    text-align: center;
+    padding: 15px 25px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.motor-stat .label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.motor-stat .value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff9800;
+}
+
+.motor-stat .unit {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.motor-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.btn-motor {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    min-width: 120px;
+}
+
+.btn-forward {
+    background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+    color: white;
+}
+
+.btn-backward {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    color: white;
+}
+
+.btn-stop {
+    background: linear-gradient(135deg, #607d8b 0%, #455a64 100%);
+    color: white;
+}
+
+.motor-brake {
+    margin-top: 15px;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+}
+
+.speed-control {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.speed-control label {
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.speed-control label span {
+    color: #ff9800;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.speed-control input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--card-bg);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.speed-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.speed-control input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.speed-presets {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    background: linear-gradient(135deg, #546e7a 0%, #37474f 100%);
+    color: white;
+}
+
+/* ==================== STATUS GRID ==================== */
+.status-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.status-item {
+    text-align: center;
+    padding: 15px 30px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    min-width: 150px;
+}
+
+.status-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.status-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.status-value.connected {
+    color: var(--success-color);
+}
+
+.status-value.disconnected {
+    color: var(--danger-color);
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ==================== NOTIFICATION ==================== */
+.notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.hidden {
+    display: none;
+}
+
+.notification.success {
+    background: linear-gradient(135deg, var(--success-color) 0%, #1e7e34 100%);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, var(--danger-color) 0%, #a71d2a 100%);
+}
+
+.notification.info {
+    background: linear-gradient(135deg, var(--info-color) 0%, #117a8b 100%);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 900px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .data-value span:first-child {
+        font-size: 2.5rem;
+    }
+    
+    .imu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sensor-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .servo-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .servo-controls .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .panel {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 20px 15px;
+    }
+    
+    .header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .status-grid {
+        flex-direction: column;
+    }
+    
+    .status-item {
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+/* ==================== ANIMASYONLAR ==================== */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.status-active {
+    animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.panel {
+    animation: fadeIn 0.5s ease;
+}
+
+.sensor-panel {
+    animation-delay: 0.1s;
+}
+
+.servo-panel {
+    animation-delay: 0.2s;
+}
+
+.status-panel {
+    animation-delay: 0.3s;
+}

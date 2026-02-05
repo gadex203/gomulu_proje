@@ -1,0 +1,12 @@
+# Raspberry Pi 4 - Flask Sensör Kontrol Paneli
+# Gerekli Python Paketleri
+
+# Web Framework
+Flask==3.0.0
+
+# Raspberry Pi GPIO (Sadece Raspberry Pi'de çalışır)
+# Windows/Mac/Linux masaüstünde yorum satırına alın
+RPi.GPIO==0.7.1
+
+# Opsiyonel: Gerçek MPU-6050 entegrasyonu için
+# smbus2==0.4.3
